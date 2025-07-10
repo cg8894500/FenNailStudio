@@ -13,4 +13,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FenNailStudio.Application\FenNailStudio.Application.csproj" />
+    <ProjectReference Include="..\FenNailStudio.Domain\FenNailStudio.Domain.csproj" />
+    <ProjectReference Include="..\FenNailStudio.Infrastructure\FenNailStudio.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

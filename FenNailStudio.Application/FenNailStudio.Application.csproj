@@ -10,4 +10,8 @@
     <PackageReference Include="AutoMapper" Version="15.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FenNailStudio.Domain\FenNailStudio.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
