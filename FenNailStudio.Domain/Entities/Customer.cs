@@ -13,7 +13,7 @@ namespace FenNailStudio.Domain.Entities
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string? City { get; set; }                 // 居住地
+        public string City { get; set; }                 // 居住地
         public string? Occupation { get; set; }           // 職業
         public int Role { get; set; } = 1;                // 權限（0: 管理者, 1: 使用者）
         public DateTime RegisterDate { get; set; }
