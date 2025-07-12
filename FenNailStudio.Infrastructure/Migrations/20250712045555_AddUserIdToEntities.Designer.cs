@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FenNailStudio.Infrastructure.Migrations
 {
     [DbContext(typeof(FenNailStudioDbContext))]
-    [Migration("20250710090841_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250712045555_AddUserIdToEntities")]
+    partial class AddUserIdToEntities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,7 @@ namespace FenNailStudio.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ServiceId")

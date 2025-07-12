@@ -1,0 +1,61 @@
+﻿@model FenNailStudio.Web.Models.ViewModels.AppointmentListViewModel
+@{
+    ViewData["Title"] = Model.Title;
+    bool isAdmin = ViewBag.IsAdmin ?? false;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">新增預約</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>客戶</th>
+            <th>美甲師</th>
+            <th>服務項目</th>
+            <th>預約時間</th>
+            <th>狀態</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>@item.CustomerName</td>
+                <td>@item.TechnicianName</td>
+                <td>@item.ServiceName</td>
+                <td>@item.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    @switch (item.Status)
+                    {
+                        case FenNailStudio.Domain.Enums.AppointmentStatus.Scheduled:
+                            <span class="badge bg-primary">已預約</span>
+                            break;
+                        case FenNailStudio.Domain.Enums.AppointmentStatus.Completed:
+                            <span class="badge bg-success">已完成</span>
+                            break;
+                        case FenNailStudio.Domain.Enums.AppointmentStatus.Cancelled:
+                            <span class="badge bg-danger">已取消</span>
+                            break;
+                        case FenNailStudio.Domain.Enums.AppointmentStatus.NoShow:
+                            <span class="badge bg-warning">未出席</span>
+                            break;
+                    }
+                </td>
+                <td>
+                    <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm">詳細</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">編輯</a>
+                    <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-warning btn-sm">取消</a>
+                    @if (isAdmin)
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">刪除</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

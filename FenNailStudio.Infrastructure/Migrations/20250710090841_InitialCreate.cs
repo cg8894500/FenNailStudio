@@ -75,7 +75,7 @@ namespace FenNailStudio.Infrastructure.Migrations
                     ServiceId = table.Column<int>(type: "int", nullable: false),
                     AppointmentDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

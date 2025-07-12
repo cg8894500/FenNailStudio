@@ -1,5 +1,6 @@
 ﻿using FenNailStudio.Application.DTOs;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FenNailStudio.Web.Models.ViewModels
 {

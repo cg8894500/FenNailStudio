@@ -15,19 +15,43 @@ namespace FenNailStudio.Application.Mapping
         {
             // Customer 映射
             CreateMap<Customer, CustomerDto>();
+
+            CreateMap<RegisterDto, Customer>()
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
+                .ForMember(dest => dest.Role, opt => opt.Ignore())
+                .ForMember(dest => dest.RegisterDate, opt => opt.Ignore())
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
+
             CreateMap<CreateCustomerDto, Customer>()
-                .ForMember(dest => dest.RegisterDate, opt => opt.MapFrom(src => DateTime.Now));
-            CreateMap<UpdateCustomerDto, Customer>();
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
+                .ForMember(dest => dest.Role, opt => opt.Ignore())
+                .ForMember(dest => dest.RegisterDate, opt => opt.Ignore())
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
+
+            CreateMap<UpdateCustomerDto, Customer>()
+                .ForMember(dest => dest.Role, opt => opt.Ignore())
+                .ForMember(dest => dest.RegisterDate, opt => opt.Ignore())
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
 
             // NailService 映射
             CreateMap<NailService, NailServiceDto>();
-            CreateMap<CreateNailServiceDto, NailService>();
-            CreateMap<UpdateNailServiceDto, NailService>();
+
+            CreateMap<CreateNailServiceDto, NailService>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
+
+            CreateMap<UpdateNailServiceDto, NailService>()
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
 
             // Technician 映射
             CreateMap<Technician, TechnicianDto>();
-            CreateMap<CreateTechnicianDto, Technician>();
-            CreateMap<UpdateTechnicianDto, Technician>();
+
+            CreateMap<CreateTechnicianDto, Technician>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
+
+            CreateMap<UpdateTechnicianDto, Technician>()
+                .ForMember(dest => dest.Appointments, opt => opt.Ignore());
 
             // Appointment 映射
             CreateMap<Appointment, AppointmentDto>()
@@ -40,9 +64,17 @@ namespace FenNailStudio.Application.Mapping
                     src.AppointmentDateTime.AddMinutes(src.Service.DurationMinutes)));
 
             CreateMap<CreateAppointmentDto, Appointment>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Domain.Enums.AppointmentStatus.Scheduled));
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Domain.Enums.AppointmentStatus.Scheduled))
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Customer, opt => opt.Ignore())
+                .ForMember(dest => dest.Technician, opt => opt.Ignore())
+                .ForMember(dest => dest.Service, opt => opt.Ignore());
 
-            CreateMap<UpdateAppointmentDto, Appointment>();
+            CreateMap<UpdateAppointmentDto, Appointment>()
+                .ForMember(dest => dest.CustomerId, opt => opt.Ignore())
+                .ForMember(dest => dest.Customer, opt => opt.Ignore())
+                .ForMember(dest => dest.Technician, opt => opt.Ignore())
+                .ForMember(dest => dest.Service, opt => opt.Ignore());
         }
     }
 }

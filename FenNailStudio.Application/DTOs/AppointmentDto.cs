@@ -1,6 +1,7 @@
 ﻿using FenNailStudio.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,10 @@ namespace FenNailStudio.Application.DTOs
         public int CustomerId { get; set; }
         public int TechnicianId { get; set; }
         public int ServiceId { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime AppointmentDateTime { get; set; }
+
         public string Notes { get; set; }
     }
 
@@ -40,7 +44,7 @@ namespace FenNailStudio.Application.DTOs
         public int TechnicianId { get; set; }
         public int ServiceId { get; set; }
         public DateTime AppointmentDateTime { get; set; }
-        public AppointmentStatus Status { get; set; }
+        //public AppointmentStatus Status { get; set; }
         public string Notes { get; set; }
     }
 }

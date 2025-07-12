@@ -20,5 +20,10 @@ namespace FenNailStudio.Infrastructure.Repositories
         {
             return await _dbSet.FirstOrDefaultAsync(c => c.Email == email);
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

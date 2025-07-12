@@ -10,6 +10,7 @@ namespace FenNailStudio.Domain.Enums
     {
         Scheduled,
         Completed,
-        Cancelled
+        Cancelled,
+        NoShow
     }
 }

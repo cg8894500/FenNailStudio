@@ -1,0 +1,49 @@
+﻿@model FenNailStudio.Web.Models.ViewModels.AppointmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "預約詳情";
+}
+
+<h1>預約詳情</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">客戶</dt>
+        <dd class="col-sm-10">@Model.Appointment.CustomerName</dd>
+        <dt class="col-sm-2">美甲師</dt>
+        <dd class="col-sm-10">@Model.Appointment.TechnicianName</dd>
+        <dt class="col-sm-2">服務項目</dt>
+        <dd class="col-sm-10">@Model.Appointment.ServiceName</dd>
+        <dt class="col-sm-2">預約時間</dt>
+        <dd class="col-sm-10">@Model.Appointment.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm")</dd>
+        <dt class="col-sm-2">狀態</dt>
+        <dd class="col-sm-10">
+            @switch (Model.Appointment.Status)
+            {
+                case FenNailStudio.Domain.Enums.AppointmentStatus.Scheduled:
+                    <span class="badge bg-primary">已預約</span>
+                    break;
+                case FenNailStudio.Domain.Enums.AppointmentStatus.Completed:
+                    <span class="badge bg-success">已完成</span>
+                    break;
+                case FenNailStudio.Domain.Enums.AppointmentStatus.Cancelled:
+                    <span class="badge bg-danger">已取消</span>
+                    break;
+                case FenNailStudio.Domain.Enums.AppointmentStatus.NoShow:
+                    <span class="badge bg-warning">未出席</span>
+                    break;
+            }
+        </dd>
+        <dt class="col-sm-2">備註</dt>
+        <dd class="col-sm-10">@(string.IsNullOrEmpty(Model.Appointment.Notes) ? "無" : Model.Appointment.Notes)</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-info">編輯</a>
+    @if (Model.Appointment.Status == FenNailStudio.Domain.Enums.AppointmentStatus.Scheduled)
+    {
+        <a asp-action="Cancel" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">取消預約</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">返回列表</a>
+</div>

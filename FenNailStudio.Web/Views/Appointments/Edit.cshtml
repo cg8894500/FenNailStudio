@@ -1,0 +1,60 @@
+﻿@model FenNailStudio.Web.Models.ViewModels.EditAppointmentViewModel
+
+@{
+    ViewData["Title"] = "編輯預約";
+}
+
+<h1>編輯預約</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AppointmentDto.Id" />
+            <div class="form-group">
+                <label class="control-label">客戶</label>
+                <input type="text" class="form-control" value="@Model.CustomerName" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="AppointmentDto.TechnicianId" class="control-label">美甲師</label>
+                <select asp-for="AppointmentDto.TechnicianId" class="form-control"
+                        asp-items="@(new SelectList(Model.Technicians, "Id", "Name"))">
+                </select>
+                <span asp-validation-for="AppointmentDto.TechnicianId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppointmentDto.ServiceId" class="control-label">服務項目</label>
+                <select asp-for="AppointmentDto.ServiceId" class="form-control"
+                        asp-items="@(new SelectList(Model.Services, "Id", "Name"))">
+                </select>
+                <span asp-validation-for="AppointmentDto.ServiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppointmentDto.AppointmentDateTime" class="control-label">預約時間</label>
+                <input asp-for="AppointmentDto.AppointmentDateTime" class="form-control" type="datetime-local" />
+                <span asp-validation-for="AppointmentDto.AppointmentDateTime" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="AppointmentDto.Status" class="control-label">狀態</label>
+                <select asp-for="AppointmentDto.Status" class="form-control" asp-items="Html.GetEnumSelectList<FenNailStudio.Domain.Enums.AppointmentStatus>()"></select>
+                <span asp-validation-for="AppointmentDto.Status" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="AppointmentDto.Notes" class="control-label">備註</label>
+                <textarea asp-for="AppointmentDto.Notes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="AppointmentDto.Notes" class="text-danger"></span>
+                <small class="form-text text-muted">若無備註，請填「無」</small>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="儲存" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">返回列表</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

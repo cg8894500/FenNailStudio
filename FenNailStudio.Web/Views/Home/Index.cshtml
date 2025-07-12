@@ -1,8 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "首頁";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">歡迎使用FenNail預約系統</h1>
+    <p>這是一個專為FenNail美甲工作室設計的管理系統，可以幫助您管理預約、服務項目。</p>
+    <p>作品請洽IG：<a href="https://www.instagram.com/fen__nail/" target="_blank">Fen Nail Studio Instagram</a></p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">預約管理</h5>
+                <p class="card-text">管理預約資料，包括預約施作、修改預約資料、取消預約。</p>
+                <a asp-controller="Appointments" asp-action="Index" class="btn btn-primary">前往預約管理</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">帳戶管理</h5>
+                <p class="card-text">管理帳戶資料，包括檢視帳戶、編輯帳戶。</p>
+                <a asp-controller="Customers" asp-action="Index" class="btn btn-primary">前往客戶管理</a>
+            </div>
+        </div>
+    </div>
+    @* <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">今日預約</h5>
+                <p class="card-text">查看今日預約情況，快速了解當天工作安排。</p>
+                <a href="#" class="btn btn-primary">查看今日預約</a>
+            </div>
+        </div>
+    </div> *@
 </div>
